@@ -24,3 +24,8 @@ Feature: String Calculator
         Given StringCalculator instance
         When I Add "1|2,3"
         Then I expect it to return 6
+
+    Scenario: Add "//;\n1;2" return 3
+        Given StringCalculator instance
+        When I Add "//;\n1;2"
+        Then I expect it to return 3
