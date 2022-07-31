@@ -1,0 +1,45 @@
+@startuml
+scale 2
+header Landing Page
+
+title Image Processing Detail
+
+skinparam ParticipantPadding 40
+skinparam style strictuml
+
+actor User as U
+participant LandingPage as LP
+database Database as DB
+queue ImageOptimisation as IO
+queue ImageWatermarking as IW
+participant ImageWorker as IWorker
+
+U -> LP: Visit
+U -> LP: Fill in Form
+U ->> LP: submit()
+activate LP
+LP -> LP: validate()
+alt#Gold #LightBlue Success case
+    LP -> DB: save()
+    LP -->> U: Successful Msg
+else #Pink Failure
+    LP -->> U: Failure Msg
+end
+
+
+LP ->> IO: queue()
+activate IO
+IO ->> IWorker: process()
+deactivate IO
+activate IWorker
+IWorker --> DB: update()
+deactivate IWorker
+LP ->> IW: queue()
+deactivate LP
+activate IW
+IW ->> IWorker: process()
+deactivate IW
+activate IWorker
+IWorker --> DB: update()
+deactivate IWorker
+@enduml
