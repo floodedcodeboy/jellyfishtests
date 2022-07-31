@@ -29,3 +29,13 @@ Feature: String Calculator
         Given StringCalculator instance
         When I Add "//;\n1;2"
         Then I expect it to return 3
+
+    Scenario: Add "-1" return "-1"
+        Given StringCalculator instance
+        When I Add "-1" it throws an Expection with a message "Negatives not allowed"
+        Then I expect it to return "-1"
+
+    Scenario: Add "-1,-2" return "-1, -2"
+        Given StringCalculator instance
+        When I Add "-1,-2" it throws an Expection with a message "Negatives not allowed"
+        Then I expect it to return "-1, -2"
