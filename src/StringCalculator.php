@@ -5,6 +5,7 @@ class StringCalculator
     private array $defaultDelimiters = ['|', ','];
 
     private string $delimiterInidicator = '//';
+
     /**
      * Returns the sum  of the numbers in the given string
      *
@@ -18,6 +19,12 @@ class StringCalculator
         }
 
         $items = $this->splitNumbers($numbers);
+
+        if (min($items) < 0) {
+            $negativeNumbers = $this->getNegativeNumbers($items);
+            throw new NegativesNotAllowedException(implode(', ', $negativeNumbers));
+        }
+
         return count($items) == 1 ? $numbers : array_sum($items);
     }
 
@@ -40,6 +47,19 @@ class StringCalculator
             $items = preg_split('/[' . implode(',', $delimiters) . ']/', $numbers);
         }
         return $items;
+    }
+
+    protected function getNegativeNumbers(array $items): array
+    {
+        $numbers = [];
+        if (!empty($items)) {
+            foreach ($items as $item) {
+                if ($item < 0) {
+                    $numbers = $item;
+                }
+            }
+        }
+        return $numbers;
     }
 
 }
