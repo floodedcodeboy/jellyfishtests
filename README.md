@@ -6,7 +6,8 @@ My solution to the Jellyfish Software Engineering Challenge
 
 ## Demo
 
-Insert gif or link to demo
+[![asciicast](https://asciinema.org/a/HmEfGCrdXaOjmZNPIfpXF1LCn.png)](https://asciinema.org/a/HmEfGCrdXaOjmZNPIfpXF1LCn)
+
 
 
 ## Installation
