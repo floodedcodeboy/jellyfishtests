@@ -32,10 +32,10 @@ Feature: String Calculator
 
     Scenario: Add "-1" return "-1"
         Given StringCalculator instance
-        When I Add "-1" it throws an Expection with a message "Negatives not allowed"
-        Then I expect it to return "-1"
+        When I Add "-1" it throws a NegativesNotAllowedException with a message "Negatives are not allowed"
+        Then I expect it to confirm the NegativesNotAllowedException was thrown with a message "Negatives are not allowed(-1)"
 
-    Scenario: Add "-1,-2" return "-1, -2"
+    Scenario: Add "-1, -3" return "-1, -3"
         Given StringCalculator instance
-        When I Add "-1,-2" it throws an Expection with a message "Negatives not allowed"
-        Then I expect it to return "-1, -2"
+        When I Add "-1,-3" it throws a NegativesNotAllowedException with a message "Negatives are not allowed"
+        Then I expect it to confirm the NegativesNotAllowedException was thrown with a message "Negatives are not allowed(-1,-3)"
